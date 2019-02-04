@@ -1,1 +1,1 @@
-# bs-houratday-picker
+# bs-ngx-houratday-picker
