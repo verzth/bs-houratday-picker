@@ -24,6 +24,9 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
 
   ngOnInit() {
     this.list = Array.from(BS_NGX_HOURATDAY_PICKER_DEFAULT);
+    if(this.bsNgxHouratday==undefined){
+      throw "[bsNgxHouratday] cannot be undefined, use empty array ([]) instead of undefined";
+    }
     this.resyncPicker();
   }
 
