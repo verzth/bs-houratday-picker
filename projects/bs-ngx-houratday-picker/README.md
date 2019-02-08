@@ -63,3 +63,23 @@ Sample
     hours: any;
   }
   ```
+### Sample Output
+```
+{
+    0 : {
+        day: 0,
+        start: 0,
+        end: 19
+    },
+    1 : {
+        day: 1,
+        start: 12,
+        end: 15
+    },
+    2 : {
+        day: 1,
+        start: 18,
+        end: 21
+    }
+}
+```
