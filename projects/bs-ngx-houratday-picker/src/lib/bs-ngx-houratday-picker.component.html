@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body">
+    <div class="btn-group btn-group-toggle" role="group" *ngFor="let day of config.days;index as i">
+      <button type="button" class="btn btn-primary" (click)="onDayClicked(i)">{{ day.name }}</button>
+      <label class="btn-info" ngbButtonLabel *ngFor="let hour of config.hours;index as j">
+        <input type="checkbox" ngbButton [(ngModel)]="list[i].hours[j]" (ngModelChange)="onHourClicked(i,j)" [valueChecked]="true" [valueUnChecked]="false"> {{ hour }}
+      </label>
+    </div>
+  </div>
+</div>
