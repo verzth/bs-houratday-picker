@@ -40,7 +40,7 @@ yarn add bs-ngx-houratday-picker
 
 Sample
    ```
-   <bs-ngx-houratday-picker [bsNgxHouratday]="data" (onDayClick)="onDayClick($event)" (onHourClick)="onHourClick($event)"></bs-ngx-houratday-picker>
+   <bs-ngx-houratday-picker [(bsNgxHouratday)]="data" (onDayClick)="onDayClick($event)" (onHourClick)="onHourClick($event)"></bs-ngx-houratday-picker>
    ```
 
 #### Interfaces
@@ -48,9 +48,9 @@ Sample
 - BsNgxHouratday
   ```
   interface BsNgxHouratday {
-    day: number;
-    start: number;
-    end: number;
+    _day: number;
+    _start: number;
+    _end: number;
   }
   ```
   
@@ -63,3 +63,23 @@ Sample
     hours: any;
   }
   ```
+### Sample Output
+```
+{
+    0 : {
+        _day: 0,
+        _start: 0,
+        _end: 19
+    },
+    1 : {
+        _day: 1,
+        _start: 12,
+        _end: 15
+    },
+    2 : {
+        _day: 1,
+        _start: 18,
+        _end: 21
+    }
+}
+```
