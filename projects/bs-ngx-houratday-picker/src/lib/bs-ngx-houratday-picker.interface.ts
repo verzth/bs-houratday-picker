@@ -1,8 +1,8 @@
 
 export default interface BsNgxHouratday {
-  day: number;
-  start: number;
-  end: number;
+  _day: number;
+  _start: number;
+  _end: number;
 }
 
 export default interface BsNgxHouratdayPicker {

@@ -48,9 +48,9 @@ Sample
 - BsNgxHouratday
   ```
   interface BsNgxHouratday {
-    day: number;
-    start: number;
-    end: number;
+    _day: number;
+    _start: number;
+    _end: number;
   }
   ```
   
@@ -67,19 +67,19 @@ Sample
 ```
 {
     0 : {
-        day: 0,
-        start: 0,
-        end: 19
+        _day: 0,
+        _start: 0,
+        _end: 19
     },
     1 : {
-        day: 1,
-        start: 12,
-        end: 15
+        _day: 1,
+        _start: 12,
+        _end: 15
     },
     2 : {
-        day: 1,
-        start: 18,
-        end: 21
+        _day: 1,
+        _start: 18,
+        _end: 21
     }
 }
 ```

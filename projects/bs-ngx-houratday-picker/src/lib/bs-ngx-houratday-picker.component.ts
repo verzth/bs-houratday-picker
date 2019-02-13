@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import BsNgxHouratdayPicker from "./bs-ngx-houratday-picker.interface";
 import {
   BS_NGX_HOURATDAY_CONFIG, BS_NGX_HOURATDAY_HOURS_ALL, BS_NGX_HOURATDAY_HOURS_NONE,
@@ -13,21 +13,26 @@ import BsNgxHouratday from "./bs-ngx-houratday-picker.interface";
     'bs-ngx-houratday-picker.component.scss'
   ]
 })
-export class BsNgxHouratdayPickerComponent implements OnInit{
+export class BsNgxHouratdayPickerComponent {
   @Output() onDayClick = new EventEmitter<any>();
   @Output() onHourClick = new EventEmitter<any>();
-  @Input() bsNgxHouratday: Array<BsNgxHouratday>;
+  private _bsNgxHouratday: Array<BsNgxHouratday>;
   public config: any = BS_NGX_HOURATDAY_CONFIG;
   public list: Array<BsNgxHouratdayPicker> = [];
   public data: BsNgxHouratdayPicker;
   constructor() {}
 
-  ngOnInit() {
+  @Input() set bsNgxHouratday(bsNgxHouratday: Array<BsNgxHouratday>) {
     this.list = Array.from(BS_NGX_HOURATDAY_PICKER_DEFAULT);
-    if(this.bsNgxHouratday==undefined){
+    if(bsNgxHouratday==undefined){
       throw "[bsNgxHouratday] cannot be undefined, use empty array ([]) instead of undefined";
     }
+    this._bsNgxHouratday = bsNgxHouratday;
     this.resyncPicker();
+  }
+
+  get bsNgxHouratday(){
+    return this._bsNgxHouratday;
   }
 
   resyncData(){
@@ -37,15 +42,15 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
       let hasNext = false;
       for(let key in item.hours){
         if(item.hours.hasOwnProperty(key) && item.hours[key]){
-          if(parent.bsNgxHouratday[index]==undefined){
-            parent.bsNgxHouratday[index] = {} as BsNgxHouratday;
+          if(parent._bsNgxHouratday[index]==undefined){
+            parent._bsNgxHouratday[index] = {} as BsNgxHouratday;
           }
           if(!hasNext){
             parent.list[i].selected = true;
-            parent.bsNgxHouratday[index].day = item.value;
-            parent.bsNgxHouratday[index].start = +key;
+            parent._bsNgxHouratday[index]._day = item.value;
+            parent._bsNgxHouratday[index]._start = +key;
           }
-          parent.bsNgxHouratday[index].end = +key;
+          parent._bsNgxHouratday[index]._end = +key;
           hasNext = true;
         }else{
           if(hasNext) index++;
@@ -56,26 +61,26 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
         index++;
       }
     });
-    for(let x=index;x<parent.bsNgxHouratday.length;x++){
-      parent.bsNgxHouratday.pop();
+    for(let x=index;x<parent._bsNgxHouratday.length;x++){
+      parent._bsNgxHouratday.pop();
     }
   }
 
   resyncPicker(){
     const parent = this;
-    this.bsNgxHouratday.forEach(function (data,i) {
-      if(data.day<0 || data.day > 6) return;
-      if(parent.list[data.day].hours){
+    this._bsNgxHouratday.forEach(function (data,i) {
+      if(data._day<0 || data._day > 6) return;
+      if(parent.list[data._day].hours){
         // NORMALIZE
-        if(data.start<0) data.start=0;
-        if(data.start>23) data.start=23;
-        if(data.end<0) data.end=0;
-        if(data.end>23) data.end=23;
-        if(data.start>data.end) data.end=data.start;
-        parent.list[data.day].selected = true;
+        if(data._start<0) data._start=0;
+        if(data._start>23) data._start=23;
+        if(data._end<0) data._end=0;
+        if(data._end>23) data._end=23;
+        if(data._start>data._end) data._end=data._start;
+        parent.list[data._day].selected = true;
 
-        for(let x=data.start;x<=data.end;x++){
-          parent.list[data.day].hours[x]=true;
+        for(let x=data._start;x<=data._end;x++){
+          parent.list[data._day].hours[x]=true;
         }
       }
     });
@@ -93,6 +98,6 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
   }
   onHourClicked(i,j){
     this.resyncData();
-    this.onHourClick.emit({day: this.list[i].day, hour: j, state: this.list[i].hours[j]});
+    this.onHourClick.emit({day: this.list[i]._day, hour: j, state: this.list[i].hours[j]});
   }
 }

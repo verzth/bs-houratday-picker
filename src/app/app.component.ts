@@ -9,14 +9,14 @@ export class AppComponent {
   title = 'tester';
   data: any = [
     {
-      day: 0,
-      start: 0,
-      end: 11
+      _day: 0,
+      _start: 0,
+      _end: 11
     },
     {
-      day: 2,
-      start: 14,
-      end: 15
+      _day: 2,
+      _start: 14,
+      _end: 15
     }
   ];
   onDayClick(day){
