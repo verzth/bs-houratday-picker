@@ -40,7 +40,7 @@ yarn add bs-ngx-houratday-picker
 
 Sample
    ```
-   <bs-ngx-houratday-picker [bsNgxHouratday]="data" (onDayClick)="onDayClick($event)" (onHourClick)="onHourClick($event)"></bs-ngx-houratday-picker>
+   <bs-ngx-houratday-picker [(bsNgxHouratday)]="data" (onDayClick)="onDayClick($event)" (onHourClick)="onHourClick($event)"></bs-ngx-houratday-picker>
    ```
 
 #### Interfaces

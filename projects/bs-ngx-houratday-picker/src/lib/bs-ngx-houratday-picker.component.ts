@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import BsNgxHouratdayPicker from "./bs-ngx-houratday-picker.interface";
 import {
   BS_NGX_HOURATDAY_CONFIG, BS_NGX_HOURATDAY_HOURS_ALL, BS_NGX_HOURATDAY_HOURS_NONE,
@@ -13,26 +13,22 @@ import BsNgxHouratday from "./bs-ngx-houratday-picker.interface";
     'bs-ngx-houratday-picker.component.scss'
   ]
 })
-export class BsNgxHouratdayPickerComponent {
+export class BsNgxHouratdayPickerComponent implements OnInit{
   @Output() onDayClick = new EventEmitter<any>();
   @Output() onHourClick = new EventEmitter<any>();
-  private _bsNgxHouratday: Array<BsNgxHouratday>;
+  @Input() bsNgxHouratday: Array<BsNgxHouratday>;
+  @Output() bsNgxHouratdayChange: EventEmitter<Array<BsNgxHouratday>> = new EventEmitter();
   public config: any = BS_NGX_HOURATDAY_CONFIG;
   public list: Array<BsNgxHouratdayPicker> = [];
   public data: BsNgxHouratdayPicker;
   constructor() {}
 
-  @Input() set bsNgxHouratday(bsNgxHouratday: Array<BsNgxHouratday>) {
+  ngOnInit() {
     this.list = Array.from(BS_NGX_HOURATDAY_PICKER_DEFAULT);
-    if(bsNgxHouratday==undefined){
-      throw "[bsNgxHouratday] cannot be undefined, use empty array ([]) instead of undefined";
+    if(this.bsNgxHouratday==undefined){
+      this.bsNgxHouratday = [];
     }
-    this._bsNgxHouratday = bsNgxHouratday;
     this.resyncPicker();
-  }
-
-  get bsNgxHouratday(){
-    return this._bsNgxHouratday;
   }
 
   resyncData(){
@@ -42,15 +38,15 @@ export class BsNgxHouratdayPickerComponent {
       let hasNext = false;
       for(let key in item.hours){
         if(item.hours.hasOwnProperty(key) && item.hours[key]){
-          if(parent._bsNgxHouratday[index]==undefined){
-            parent._bsNgxHouratday[index] = {} as BsNgxHouratday;
+          if(parent.bsNgxHouratday[index]==undefined){
+            parent.bsNgxHouratday[index] = {} as BsNgxHouratday;
           }
           if(!hasNext){
             parent.list[i].selected = true;
-            parent._bsNgxHouratday[index]._day = item.value;
-            parent._bsNgxHouratday[index]._start = +key;
+            parent.bsNgxHouratday[index]._day = item.value;
+            parent.bsNgxHouratday[index]._start = +key;
           }
-          parent._bsNgxHouratday[index]._end = +key;
+          parent.bsNgxHouratday[index]._end = +key;
           hasNext = true;
         }else{
           if(hasNext) index++;
@@ -61,14 +57,15 @@ export class BsNgxHouratdayPickerComponent {
         index++;
       }
     });
-    for(let x=index;x<parent._bsNgxHouratday.length;x++){
-      parent._bsNgxHouratday.pop();
+    for(let x=index;x<parent.bsNgxHouratday.length;x++){
+      parent.bsNgxHouratday.pop();
     }
+    this.bsNgxHouratdayChange.emit(this.bsNgxHouratday);
   }
 
   resyncPicker(){
     const parent = this;
-    this._bsNgxHouratday.forEach(function (data,i) {
+    this.bsNgxHouratday.forEach(function (data,i) {
       if(data._day<0 || data._day > 6) return;
       if(parent.list[data._day].hours){
         // NORMALIZE
