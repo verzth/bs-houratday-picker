@@ -16,19 +16,38 @@ import BsNgxHouratday from "./bs-ngx-houratday-picker.interface";
 export class BsNgxHouratdayPickerComponent implements OnInit{
   @Output() onDayClick = new EventEmitter<any>();
   @Output() onHourClick = new EventEmitter<any>();
-  @Input() bsNgxHouratday: Array<BsNgxHouratday>;
+  private _bsNgxHouratday: Array<BsNgxHouratday>;
+  @Input() set bsNgxHouratday(bsNgxHouratday){
+    if(bsNgxHouratday==undefined){
+      this._bsNgxHouratday = [];
+    } else {
+      this._bsNgxHouratday = bsNgxHouratday;
+    }
+    this.resyncPicker();
+  }
+  get bsNgxHouratday(){
+    return this._bsNgxHouratday;
+  }
   @Output() bsNgxHouratdayChange: EventEmitter<Array<BsNgxHouratday>> = new EventEmitter();
   public config: any = BS_NGX_HOURATDAY_CONFIG;
   public list: Array<BsNgxHouratdayPicker> = [];
   public data: BsNgxHouratdayPicker;
   constructor() {}
 
-  ngOnInit() {
-    this.list = Array.from(BS_NGX_HOURATDAY_PICKER_DEFAULT);
-    if(this.bsNgxHouratday==undefined){
-      this.bsNgxHouratday = [];
-    }
-    this.resyncPicker();
+  ngOnInit(): void {
+    this.list = BS_NGX_HOURATDAY_PICKER_DEFAULT;
+  }
+
+  clearPicker(): void{
+    let parent = this;
+    this.list.forEach(function (item,i) {
+      parent.list[i].selected = false;
+      for(let key in parent.list[i].hours){
+        if(parent.list[i].hours.hasOwnProperty(key)){
+          parent.list[i].hours[key] = false;
+        }
+      }
+    });
   }
 
   resyncData(){
@@ -38,15 +57,15 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
       let hasNext = false;
       for(let key in item.hours){
         if(item.hours.hasOwnProperty(key) && item.hours[key]){
-          if(parent.bsNgxHouratday[index]==undefined){
-            parent.bsNgxHouratday[index] = {} as BsNgxHouratday;
+          if(parent._bsNgxHouratday[index]==undefined){
+            parent._bsNgxHouratday[index] = {} as BsNgxHouratday;
           }
           if(!hasNext){
             parent.list[i].selected = true;
-            parent.bsNgxHouratday[index]._day = item.value;
-            parent.bsNgxHouratday[index]._start = +key;
+            parent._bsNgxHouratday[index]._day = item.value;
+            parent._bsNgxHouratday[index]._start = +key;
           }
-          parent.bsNgxHouratday[index]._end = +key;
+          parent._bsNgxHouratday[index]._end = +key;
           hasNext = true;
         }else{
           if(hasNext) index++;
@@ -57,15 +76,16 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
         index++;
       }
     });
-    for(let x=index;x<parent.bsNgxHouratday.length;x++){
-      parent.bsNgxHouratday.pop();
+    for(let x=index;x<parent._bsNgxHouratday.length;x++){
+      parent._bsNgxHouratday.pop();
     }
-    this.bsNgxHouratdayChange.emit(this.bsNgxHouratday);
+    this.bsNgxHouratdayChange.emit(this._bsNgxHouratday);
   }
 
   resyncPicker(){
     const parent = this;
-    this.bsNgxHouratday.forEach(function (data,i) {
+    this.clearPicker();
+    this._bsNgxHouratday.forEach(function (data,i) {
       if(data._day<0 || data._day > 6) return;
       if(parent.list[data._day].hours){
         // NORMALIZE
