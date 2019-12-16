@@ -22,14 +22,16 @@
     }
 
     button,label{
+      padding: 5px;
+      font-size: 12px;
       border-radius: 0;
     }
 
     button:first-child{
-      width: 150px;
+      width: 75px;
     }
     label{
-      width: 45px;
+      width: 30px;
     }
   }
 }
