@@ -137,33 +137,33 @@
         }
       }
     },
-    "bs-ngx-houratday-picker": {
-      "root": "projects/bs-ngx-houratday-picker",
-      "sourceRoot": "projects/bs-ngx-houratday-picker/src",
+    "ngx-bootstrap-houratday-picker": {
+      "root": "projects/ngx-bootstrap-houratday-picker",
+      "sourceRoot": "projects/ngx-bootstrap-houratday-picker/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/bs-ngx-houratday-picker/tsconfig.lib.json",
-            "project": "projects/bs-ngx-houratday-picker/ng-package.json"
+            "tsConfig": "projects/ngx-bootstrap-houratday-picker/tsconfig.lib.json",
+            "project": "projects/ngx-bootstrap-houratday-picker/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/bs-ngx-houratday-picker/src/test.ts",
-            "tsConfig": "projects/bs-ngx-houratday-picker/tsconfig.spec.json",
-            "karmaConfig": "projects/bs-ngx-houratday-picker/karma.conf.js"
+            "main": "projects/ngx-bootstrap-houratday-picker/src/test.ts",
+            "tsConfig": "projects/ngx-bootstrap-houratday-picker/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-bootstrap-houratday-picker/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/bs-ngx-houratday-picker/tsconfig.lib.json",
-              "projects/bs-ngx-houratday-picker/tsconfig.spec.json"
+              "projects/ngx-bootstrap-houratday-picker/tsconfig.lib.json",
+              "projects/ngx-bootstrap-houratday-picker/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

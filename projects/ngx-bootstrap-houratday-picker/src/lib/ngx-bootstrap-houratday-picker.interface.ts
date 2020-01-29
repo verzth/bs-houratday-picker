@@ -1,11 +1,11 @@
 
-export default interface BsNgxHouratday {
+export default interface NgxBootstrapHouratday {
   _day: number;
   _start: number;
   _end: number;
 }
 
-export default interface BsNgxHouratdayPicker {
+export default interface NgxBootstrapHouratdayPicker {
   name: string;
   value: number;
   selected: boolean;

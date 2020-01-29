@@ -1,37 +1,37 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import BsNgxHouratdayPicker from "./bs-ngx-houratday-picker.interface";
+import NgxBootstrapHouratdayPicker from "./ngx-bootstrap-houratday-picker.interface";
 import {
   BS_NGX_HOURATDAY_CONFIG, BS_NGX_HOURATDAY_HOURS_ALL, BS_NGX_HOURATDAY_HOURS_NONE,
   BS_NGX_HOURATDAY_PICKER_DEFAULT
-} from "./bs-ngx-houratday-picker.config";
-import BsNgxHouratday from "./bs-ngx-houratday-picker.interface";
+} from "./ngx-bootstrap-houratday-picker.config";
+import NgxBootstrapHouratday from "./ngx-bootstrap-houratday-picker.interface";
 
 @Component({
-  selector: 'bs-ngx-houratday-picker',
-  templateUrl: 'bs-ngx-houratday-picker.component.html',
+  selector: 'ngx-bootstrap-houratday-picker',
+  templateUrl: 'ngx-bootstrap-houratday-picker.component.html',
   styleUrls: [
-    'bs-ngx-houratday-picker.component.scss'
+    'ngx-bootstrap-houratday-picker.component.scss'
   ]
 })
-export class BsNgxHouratdayPickerComponent implements OnInit{
+export class NgxBootstrapHouratdayPickerComponent implements OnInit{
   @Output() onDayClick = new EventEmitter<any>();
   @Output() onHourClick = new EventEmitter<any>();
-  private _bsNgxHouratday: Array<BsNgxHouratday>;
-  @Input() set bsNgxHouratday(bsNgxHouratday){
-    if(bsNgxHouratday==undefined){
-      this._bsNgxHouratday = [];
+  private _NgxBootstrapHouratday: Array<NgxBootstrapHouratday>;
+  @Input() set NgxBootstrapHouratday(NgxBootstrapHouratday){
+    if(NgxBootstrapHouratday==undefined){
+      this._NgxBootstrapHouratday = [];
     } else {
-      this._bsNgxHouratday = bsNgxHouratday;
+      this._NgxBootstrapHouratday = NgxBootstrapHouratday;
     }
     this.resyncPicker();
   }
-  get bsNgxHouratday(){
-    return this._bsNgxHouratday;
+  get NgxBootstrapHouratday(){
+    return this._NgxBootstrapHouratday;
   }
-  @Output() bsNgxHouratdayChange: EventEmitter<Array<BsNgxHouratday>> = new EventEmitter();
+  @Output() NgxBootstrapHouratdayChange: EventEmitter<Array<NgxBootstrapHouratday>> = new EventEmitter();
   public config: any = BS_NGX_HOURATDAY_CONFIG;
-  public list: Array<BsNgxHouratdayPicker> = [];
-  public data: BsNgxHouratdayPicker;
+  public list: Array<NgxBootstrapHouratdayPicker> = [];
+  public data: NgxBootstrapHouratdayPicker;
   constructor() {}
 
   ngOnInit(): void {
@@ -57,15 +57,15 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
       let hasNext = false;
       for(let key in item.hours){
         if(item.hours.hasOwnProperty(key) && item.hours[key]){
-          if(parent._bsNgxHouratday[index]==undefined){
-            parent._bsNgxHouratday[index] = {} as BsNgxHouratday;
+          if(parent._NgxBootstrapHouratday[index]==undefined){
+            parent._NgxBootstrapHouratday[index] = {} as NgxBootstrapHouratday;
           }
           if(!hasNext){
             parent.list[i].selected = true;
-            parent._bsNgxHouratday[index]._day = item.value;
-            parent._bsNgxHouratday[index]._start = +key;
+            parent._NgxBootstrapHouratday[index]._day = item.value;
+            parent._NgxBootstrapHouratday[index]._start = +key;
           }
-          parent._bsNgxHouratday[index]._end = +key;
+          parent._NgxBootstrapHouratday[index]._end = +key;
           hasNext = true;
         }else{
           if(hasNext) index++;
@@ -76,16 +76,16 @@ export class BsNgxHouratdayPickerComponent implements OnInit{
         index++;
       }
     });
-    for(let x=index;x<parent._bsNgxHouratday.length;x++){
-      parent._bsNgxHouratday.pop();
+    for(let x=index;x<parent._NgxBootstrapHouratday.length;x++){
+      parent._NgxBootstrapHouratday.pop();
     }
-    this.bsNgxHouratdayChange.emit(this._bsNgxHouratday);
+    this.NgxBootstrapHouratdayChange.emit(this._NgxBootstrapHouratday);
   }
 
   resyncPicker(){
     const parent = this;
     this.clearPicker();
-    this._bsNgxHouratday.forEach(function (data,i) {
+    this._NgxBootstrapHouratday.forEach(function (data,i) {
       if(data._day<0 || data._day > 6) return;
       if(parent.list[data._day].hours){
         // NORMALIZE

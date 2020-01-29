@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BsNgxHouratdayPickerComponent } from './bs-ngx-houratday-picker.component';
+import { NgxBootstrapHouratdayPickerComponent } from './ngx-bootstrap-houratday-picker.component';
 import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    BsNgxHouratdayPickerComponent
+    NgxBootstrapHouratdayPickerComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +14,7 @@ import {FormsModule} from "@angular/forms";
     NgbModule,
   ],
   exports: [
-    BsNgxHouratdayPickerComponent,
+    NgxBootstrapHouratdayPickerComponent,
   ]
 })
-export class BsNgxHouratdayPickerModule { }
+export class NgxBootstrapHouratdayPickerModule { }

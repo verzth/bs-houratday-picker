@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/bs-ngx-houratday-picker",
+  "dest": "../../dist/ngx-bootstrap-houratday-picker",
   "lib": {
     "entryFile": "src/public_api.ts"
   }

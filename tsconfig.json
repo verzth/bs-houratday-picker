@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "bs-ngx-houratday-picker": [
-        "dist/bs-ngx-houratday-picker"
+      "ngx-bootstrap-houratday-picker": [
+        "dist/ngx-bootstrap-houratday-picker"
       ],
-      "bs-ngx-houratday-picker/*": [
-        "dist/bs-ngx-houratday-picker/*"
+      "ngx-bootstrap-houratday-picker/*": [
+        "dist/ngx-bootstrap-houratday-picker/*"
       ]
     }
   }

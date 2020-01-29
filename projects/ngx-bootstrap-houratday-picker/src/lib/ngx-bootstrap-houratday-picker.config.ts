@@ -1,4 +1,4 @@
-import BsNgxHouratdayPicker from "./bs-ngx-houratday-picker.interface";
+import NgxBootstrapHouratdayPicker from "./ngx-bootstrap-houratday-picker.interface";
 
 export const BS_NGX_HOURATDAY_HOURS_ALL = {
   0:true,1:true,2:true,3:true,4:true,5:true,6:true,7:true,
@@ -51,29 +51,29 @@ export const BS_NGX_HOURATDAY_PICKER_DEFAULT = [
   {
     value:0,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:1,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:2,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:3,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:4,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:5,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker,
+  } as NgxBootstrapHouratdayPicker,
   {
     value:6,
     hours: Object.assign({},BS_NGX_HOURATDAY_HOURS_NONE)
-  } as BsNgxHouratdayPicker
+  } as NgxBootstrapHouratdayPicker
 ];

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BsNgxHouratdayPickerModule} from "../../projects/bs-ngx-houratday-picker/src/lib/bs-ngx-houratday-picker.module";
+import {NgxBootstrapHouratdayPickerModule} from "../../projects/ngx-bootstrap-houratday-picker/src/lib/ngx-bootstrap-houratday-picker.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import {BsNgxHouratdayPickerModule} from "../../projects/bs-ngx-houratday-picker
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BsNgxHouratdayPickerModule
+    NgxBootstrapHouratdayPickerModule
   ],
   providers: [
   ],
