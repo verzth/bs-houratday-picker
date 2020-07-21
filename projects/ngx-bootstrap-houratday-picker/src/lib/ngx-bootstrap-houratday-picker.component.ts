@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import NgxBootstrapHouratdayPicker from "./ngx-bootstrap-houratday-picker.interface";
 import {
   BS_NGX_HOURATDAY_CONFIG, BS_NGX_HOURATDAY_HOURS_ALL, BS_NGX_HOURATDAY_HOURS_NONE,
@@ -13,7 +13,7 @@ import NgxBootstrapHouratday from "./ngx-bootstrap-houratday-picker.interface";
     'ngx-bootstrap-houratday-picker.component.scss'
   ]
 })
-export class NgxBootstrapHouratdayPickerComponent implements OnInit{
+export class NgxBootstrapHouratdayPickerComponent{
   @Output() onDayClick = new EventEmitter<any>();
   @Output() onHourClick = new EventEmitter<any>();
   private _NgxBootstrapHouratday: Array<NgxBootstrapHouratday>;
@@ -23,6 +23,7 @@ export class NgxBootstrapHouratdayPickerComponent implements OnInit{
     } else {
       this._NgxBootstrapHouratday = NgxBootstrapHouratday;
     }
+    this.list = BS_NGX_HOURATDAY_PICKER_DEFAULT;
     this.resyncPicker();
   }
   get NgxBootstrapHouratday(){
@@ -33,10 +34,6 @@ export class NgxBootstrapHouratdayPickerComponent implements OnInit{
   public list: Array<NgxBootstrapHouratdayPicker> = [];
   public data: NgxBootstrapHouratdayPicker;
   constructor() {}
-
-  ngOnInit(): void {
-    this.list = BS_NGX_HOURATDAY_PICKER_DEFAULT;
-  }
 
   clearPicker(): void{
     let parent = this;
